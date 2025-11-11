@@ -280,10 +280,14 @@ const VideoGenerationView: React.FC<VideoGenerationViewProps> = ({ preset, clear
               setVideoFilename(videoFile.name);
               setThumbnailUrl(newThumbnailUrl);
               
+              // Clone the blob before passing it to the history service to prevent race conditions
+              // where IndexedDB write operation interferes with the blob used by the object URL.
+              const blobForHistory = videoFile.slice();
+
               addHistoryItem({
                   type: 'Video',
                   prompt: `Video Generation: ${prompt.trim().substring(0, 100)}...`,
-                  result: videoFile,
+                  result: blobForHistory,
               }).then(async () => {
                   const updateResult = await incrementVideoUsage(currentUser);
                   if (updateResult.success && updateResult.user) {

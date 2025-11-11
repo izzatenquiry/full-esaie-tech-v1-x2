@@ -589,6 +589,10 @@ export const ProductReviewView: React.FC<ProductReviewViewProps> = ({ onReEdit, 
 
         if (videoFile) {
             const objectUrl = URL.createObjectURL(videoFile);
+            
+            // Clone the blob before passing it to the history service to prevent race conditions
+            // where IndexedDB write operation interferes with the blob used by the object URL.
+            const blobForHistory = videoFile.slice();
 
             setGeneratedVideos(prev => {
                 const newVideos = [...prev];
@@ -615,7 +619,7 @@ export const ProductReviewView: React.FC<ProductReviewViewProps> = ({ onReEdit, 
                 return newNames;
             });
 
-            addHistoryItem({ type: 'Video', prompt: `Scene Video ${index + 1}`, result: videoFile }).then(async () => {
+            addHistoryItem({ type: 'Video', prompt: `Scene Video ${index + 1}`, result: blobForHistory }).then(async () => {
                 const updateResult = await incrementVideoUsage(currentUser);
                 if (updateResult.success && updateResult.user) {
                     onUserUpdate(updateResult.user);
