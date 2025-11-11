@@ -84,10 +84,10 @@ const ProductAdView: React.FC<ProductAdViewProps> = ({ language }) => {
 
   useEffect(() => {
     try {
-        const stateToSave = { productImage, productDesc, selections, storyboard };
+        const stateToSave = { productDesc, selections, storyboard };
         sessionStorage.setItem(SESSION_KEY, JSON.stringify(stateToSave));
     } catch (e) { console.error("Failed to save state to session storage", e); }
-  }, [productImage, productDesc, selections, storyboard]);
+  }, [productDesc, selections, storyboard]);
 
   const handleImageUpload = useCallback((base64: string, mimeType: string) => {
     setProductImage({ base64, mimeType });

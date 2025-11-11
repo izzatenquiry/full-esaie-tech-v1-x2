@@ -72,12 +72,6 @@ const VideoGenerationView: React.FC<VideoGenerationViewProps> = ({ preset, clear
   const model = MODELS.videoGenerationDefault;
   const isVeo3 = model.startsWith('veo-3');
 
-  const allStates = {
-    prompt, negativePrompt, dialogue, dialogueAudio,
-    style, lighting, camera, composition, lensType, filmSim, effect,
-    referenceImage, previewUrl, resolution, aspectRatio, voiceoverLanguage, voiceoverMood
-  };
-
   useEffect(() => {
     try {
         const savedState = sessionStorage.getItem(SESSION_KEY);
@@ -108,13 +102,19 @@ const VideoGenerationView: React.FC<VideoGenerationViewProps> = ({ preset, clear
   
   useEffect(() => {
     try {
-        sessionStorage.setItem(SESSION_KEY, JSON.stringify(allStates));
+        const stateToSave = {
+            prompt, negativePrompt, dialogue, dialogueAudio,
+            style, lighting, camera, composition, lensType, filmSim, effect,
+            resolution, aspectRatio, voiceoverLanguage, voiceoverMood
+            // Excluded: referenceImage, previewUrl
+        };
+        sessionStorage.setItem(SESSION_KEY, JSON.stringify(stateToSave));
     } catch (e) { console.error("Failed to save state to session storage", e); }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     prompt, negativePrompt, dialogue, dialogueAudio,
     style, lighting, camera, composition, lensType, filmSim, effect,
-    referenceImage, previewUrl, resolution, aspectRatio, voiceoverLanguage, voiceoverMood
+    resolution, aspectRatio, voiceoverLanguage, voiceoverMood
   ]);
 
   const loadingMessages = T.loadingMessages;
