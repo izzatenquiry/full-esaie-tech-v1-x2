@@ -192,10 +192,10 @@ const GetStartedView: React.FC<GetStartedViewProps> = ({ language }) => {
                     <SubSection title={T.ch8s2Title}>
                         <p>{T.ch8s2P1}</p>
                         <ul className="list-disc pl-5 space-y-2 text-sm">
-                            <li><code className="text-sm font-mono bg-neutral-200 dark:bg-neutral-700 p-1 rounded">User Database (Settings > User Database)</code>: {T.ch8s2L1}</li>
-                            <li><code className="text-sm font-mono bg-neutral-200 dark:bg-neutral-700 p-1 rounded">Admin Content (Settings > Admin Content)</code>: {T.ch8s2L2}</li>
-                            <li><code className="text-sm font-mono bg-neutral-200 dark:bg-neutral-700 p-1 rounded">Batch Processor (AI Video & Voice > Batch Processor)</code>: {T.ch8s2L3}</li>
-                            <li><code className="text-sm font-mono bg-neutral-200 dark:bg-neutral-700 p-1 rounded">Video Combiner (AI Video & Voice > Video Combiner)</code>: {T.ch8s2L4}</li>
+                            <li><code className="text-sm font-mono bg-neutral-200 dark:bg-neutral-700 p-1 rounded">{'User Database (Settings > User Database)'}</code>: {T.ch8s2L1}</li>
+                            <li><code className="text-sm font-mono bg-neutral-200 dark:bg-neutral-700 p-1 rounded">{'Admin Content (Settings > Admin Content)'}</code>: {T.ch8s2L2}</li>
+                            <li><code className="text-sm font-mono bg-neutral-200 dark:bg-neutral-700 p-1 rounded">{'Batch Processor (AI Video & Voice > Batch Processor)'}</code>: {T.ch8s2L3}</li>
+                            <li><code className="text-sm font-mono bg-neutral-200 dark:bg-neutral-700 p-1 rounded">{'Video Combiner (AI Video & Voice > Video Combiner)'}</code>: {T.ch8s2L4}</li>
                         </ul>
                         <p>{T.ch8s2P2}</p>
                     </SubSection>
